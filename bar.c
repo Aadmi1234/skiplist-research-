@@ -143,7 +143,7 @@ int skiplist_delete(skiplist *list, int key) {
 }
 
 static void skiplist_dump(skiplist *list) {
-    // printf("-INF->");
+    printf("-INF->");
     node *x = list->lead;
     while (x && x->above[1] != list->lead) {
         printf("%d[%d]->", x->above[1]->key, x->above[1]->value);
@@ -152,12 +152,69 @@ static void skiplist_dump(skiplist *list) {
     printf("INF\n");
 }
 
+bool operation_control(skiplist* list){
+    printf("\n\nEnter choice for respective operations: "
+        "\n1) Insert Node"
+        "\n2) Search Node"
+        "\n3) Delete Node"
+        "\n4) Print SkipList"
+        "\n0)Press any other key to exit."
+        "\n--> ");
+    char control; scanf(" %c",&control);
+    switch(control){
+        case '1': 
+            printf("Insert:---------------------------------\n");
+            printf("Enter the key of the node to be inserted: ");
+            int ins; scanf(" %d",&ins);
+            skiplist_insert(list, ins, ins);
+            printf("\n\nNode inserted. Modified skiplist: \n");
+            skiplist_dump(list);
+            break;
+        
+        case '2': 
+            printf("Search:---------------------------------\n");
+            printf("Enter the key of the node to be searched: ");
+            int srch; scanf(" %d",&srch);
+            node *x = skiplist_search(list, srch);
+            if (x) {
+                printf("key = %d, value = %d\n", srch, x->value);
+            } else {
+                printf("key = %d, not found\n", srch);
+            }
+            break;
+
+        case '3':
+            printf("Delete:--------------------------------\n");
+            printf("Enter the key of the node to be deleted: ");
+            int del; scanf(" %d",&del);
+            skiplist_delete(list, del);
+            printf("\n\nNode removed. Modified skiplist: \n");
+            skiplist_dump(list);
+            
+            break;
+        case '4':
+            printf("Print:---------------------------------\n");
+            skiplist_dump(list);
+            break;
+
+        default : return false; 
+    }
+    return true;
+}
+
 int main() {
-    int arr[] = { 3, 6, 9, 2, 11, 72, 1, 4 };
-    int i;
+    // int arr[] = { 3, 6, 9, 2, 11, 72, 1, 4 };
+    // int i;
+    bool exit_control = true;
     skiplist list;
     skiplist_init(&list);
 
+
+    while(exit_control){
+        exit_control = operation_control(&list);
+    }
+
+    /*
     // int* ar = (int*) malloc(5 * sizeof(int));
     // printf("Enter the 5 initial elements: ");
     // for(i=0; i<5; ++i) scnaf("%d",&ar[i]);
@@ -198,6 +255,7 @@ int main() {
     skiplist_delete(&list, 72);
     skiplist_delete(&list, 1);
     skiplist_dump(&list);
- 
+    */
+
     return 0;
 }
