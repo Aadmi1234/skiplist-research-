@@ -160,39 +160,40 @@ bool operation_control(skiplist* list){
         "\n4) Print SkipList"
         "\n0)Press any other key to exit."
         "\n--> ");
-    char control; scanf(" %c",&control);
+    int control; scanf("%d",&control);
     switch(control){
-        case '1': 
+        case 1: 
             printf("Insert:---------------------------------\n");
             printf("Enter the key of the node to be inserted: ");
-            int ins; scanf(" %d",&ins);
+            int ins; scanf("%d",&ins);
             skiplist_insert(list, ins, ins);
             printf("\n\nNode inserted. Modified skiplist: \n");
             skiplist_dump(list);
             break;
         
-        case '2': 
+        case 2: 
             printf("Search:---------------------------------\n");
             printf("Enter the key of the node to be searched: ");
-            int srch; scanf(" %d",&srch);
+            int srch; scanf("%d",&srch);
             node *x = skiplist_search(list, srch);
             if (x) {
+                printf("Element found. \n");
                 printf("key = %d, value = %d\n", srch, x->value);
             } else {
                 printf("key = %d, not found\n", srch);
             }
             break;
 
-        case '3':
+        case 3:
             printf("Delete:--------------------------------\n");
             printf("Enter the key of the node to be deleted: ");
-            int del; scanf(" %d",&del);
+            int del; scanf("%d",&del);
             skiplist_delete(list, del);
             printf("\n\nNode removed. Modified skiplist: \n");
             skiplist_dump(list);
             
             break;
-        case '4':
+        case 4:
             printf("Print:---------------------------------\n");
             skiplist_dump(list);
             break;

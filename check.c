@@ -143,7 +143,7 @@ int skiplist_delete(skiplist *list, int key) {
 }
 
 static void skiplist_dump(skiplist *list) {
-    // printf("-INF->");
+    printf("-INF->");
     node *x = list->lead;
     while (x && x->above[1] != list->lead) {
         printf("%d[%d]->", x->above[1]->key, x->above[1]->value);
