@@ -127,6 +127,7 @@ int skiplist_delete(skiplist *list, int key) {
 }
  
 static void skiplist_dump(skiplist *list) {
+    printf("-\U0000221E->");
     snode *x = list->header;
     while (x && x->forward[1] != list->header) {
         printf("%d[%d]->", x->forward[1]->key, x->forward[1]->value);
@@ -158,7 +159,7 @@ int main() {
         }
     }
  
-    printf("Search:--------------------\n");
+    printf("Delete:--------------------\n");
     skiplist_delete(&list, 3);
     skiplist_delete(&list, 9);
     skiplist_dump(&list);

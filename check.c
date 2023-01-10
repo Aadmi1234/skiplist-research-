@@ -158,11 +158,6 @@ int main() {
     skiplist list;
     skiplist_init(&list);
 
-    // int* ar = (int*) malloc(5 * sizeof(int));
-    // printf("Enter the 5 initial elements: ");
-    // for(i=0; i<5; ++i) scnaf("%d",&ar[i]);
-
- 
     printf("Insert:--------------------\n");
     for (i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
         skiplist_insert(&list, arr[i], arr[i]);
@@ -173,10 +168,6 @@ int main() {
     printf("Search:--------------------\n");
     int keys[] = { 3, 4, 7, 10, 111, 72 };
 
-    // int* keyss = (int*) malloc(5 * sizeof(int));
-    // printf("Enter the 5 elements to be searched: ");
-    // for(i=0; i<5; ++i) scnaf("%d",&keyss[i]);
- 
     for (i = 0; i < sizeof(keys) / sizeof(keys[0]); i++) {
         node *x = skiplist_search(&list, keys[i]);
         if (x) {
@@ -186,12 +177,7 @@ int main() {
         }
     }
  
-
     printf("Delete:--------------------\n");
-
-    // int* del = (int*) malloc(5 * sizeof(int));
-    // printf("Enter the elements to be deleted: ");
-    // for(int i=0; i<5; ++i); scnaf("%d",&del[i]);
 
     skiplist_delete(&list, 3);
     skiplist_delete(&list, 9);
